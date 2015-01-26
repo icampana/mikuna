@@ -1,3 +1,12 @@
 from django.contrib import admin
 
-# Register your models here.
+from accounting.models import Customer, Tax
+
+class CustomerAdmin(admin.ModelAdmin):
+    pass
+
+class TaxAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Tax, TaxAdmin)
+admin.site.register(Customer, CustomerAdmin)

@@ -17,9 +17,15 @@ class Customer(models.Model):
     def __unicode__(self):
         return self.name
 
+    class Meta:
+        verbose_name_plural = 'Customers'
+
 class Tax(models.Model):
     name = models.CharField(max_length = 100)
     percentage = models.DecimalField(max_digits = 10, decimal_places = 2, blank = True, null = True)
     
     def __unicode__(self):
-        return "%s (%d)" % (self.name, self.percentage)
+        return "%s (%d %%)" % (self.name, self.percentage)
+
+    class Meta:
+        verbose_name_plural = 'Taxes'

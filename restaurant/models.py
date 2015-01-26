@@ -9,12 +9,33 @@ class Table(models.Model):
     status = models.BooleanField(help_text='Enabled / Disabled')
     lock_user = models.ForeignKey(to = User, verbose_name = 'Lock to user?', null = True, blank = True)
     
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Table'
+        verbose_name_plural = 'Tables'
+    
 class Category(models.Model):
     name = models.CharField(max_length = 150)
     status = models.BooleanField(help_text='Enabled / Disabled')
+    
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
 
 class Ingredient(models.Model):
     name = models.CharField(max_length = 150)
+    
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Ingredient'
+        verbose_name_plural = 'Ingredients'
 
 class IngredientReference(models.Model):
     ingredient = models.ForeignKey('Ingredient')
@@ -28,6 +49,14 @@ class Dish(models.Model):
     tax = models.ForeignKey(to = Tax, blank = True, null = True)
     ingredients = models.ManyToManyField(to = Ingredient, through='IngredientReference')
     status = models.BooleanField(help_text='Enabled / Disabled')
+    
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Dish'
+        verbose_name_plural = 'Dishes'
+
 
 class DishesPerOrder(models.Model):
     order = models.ForeignKey('Order')
@@ -39,6 +68,7 @@ class DishesPerOrder(models.Model):
 ORDER_STATUS = (
     ('op', 'Open'),
     ('pp', 'Payment Pending'),
+    ('cc', 'Cancelled'),
     ('cl', 'Closed'),
 )
 
@@ -52,3 +82,10 @@ class Order(models.Model):
     taxes = models.FloatField()
     total = models.FloatField()
     status = models.CharField(max_length = 3, choices = ORDER_STATUS)
+    
+    def __unicode__(self):
+        return "Order # %d" % self.id
+
+    class Meta:
+        verbose_name = 'Order'
+        verbose_name_plural = 'Orders'

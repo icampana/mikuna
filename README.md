@@ -12,7 +12,7 @@ experience on each device.
 
 ## Technology
 
-Mikuna is based on **Python and Django**, it's modular and multilingual. 
+Mikuna is based on **Python 2.7 and Django 1.6**, it's modular and multilingual. 
 Can run from a Sqlite Database or a regular DB engine like PostgreSQL or MySQL.
 
 
