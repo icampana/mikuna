@@ -11,6 +11,14 @@ class Table(models.Model):
     
     def __unicode__(self):
         return self.name
+    
+    def bootstrap_status(self):
+        status = 'success'
+        
+        if self.status == False:
+            status = 'danger'
+            
+        return status
 
     class Meta:
         verbose_name = 'Table'
